@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classes from './BurgerIngredient.css';
 
-const burgerIngredient = (props) => {
-  const { type } = props;
-  const ingredients = ['breadBottom', 'breadTop', 'meat', 'salad', 'cheese', 'bacon'];
-
-  ingredients.map(ingredient => {
+export default class BurgerIngredient extends Component {
+  render() {
+    const { type } = this.props;
     const className = type[0].toUpperCase() + type.slice(1);
-
-    if (!type) return '';
 
     if (type === 'breadTop') {
       return (
@@ -19,8 +16,10 @@ const burgerIngredient = (props) => {
       )
     }
 
-    return <div className={classes[className]} />
-  });
+    return <div className={classes[className]} />;
+  }
 };
 
-export default burgerIngredient;
+BurgerIngredient.propTypes = {
+  type: PropTypes.string.isRequired,
+};
